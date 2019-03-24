@@ -4,6 +4,7 @@ Cross-site scripting (XSS) is a security vulnerability typically found in old an
 # How to Prevent and check xss?
 There is still a security issue with this function, according to OWASP the following characters should be filtered in order to prevent an XSS attack:
 
+
  & --> &
   <
  > --> >
@@ -20,6 +21,7 @@ For the time being I've hacked the core module filter.module with the same code 
  $string = str_replace('"', '"', $string); 
  $string = str_replace("'", ''', $string);
  $string = str_replace('/', '/', $string); 
+ 
  
 #Filters an HTML string to prevent cross-site-scripting (XSS) vulnerabilities.
  
