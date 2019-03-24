@@ -5,16 +5,19 @@ Cross-site scripting (XSS) is a security vulnerability typically found in old an
 There is still a security issue with this function, according to OWASP the following characters should be filtered in order to prevent an XSS attack:
 
 
- & --> &
-  <
- > --> >
- " --> "
- ' --> '     ' is not recommended
- / --> /     forward slash is included as it helps end an HTML entity 
+ 1.  & --> &
+ 2.  < > 
+ 3.  --> >
+ 4.  " --> "
+ 5.  ' --> '     ' is not recommended
+ 6.  / --> /     forward slash is included as it helps end an HTML entity 
+ 
  
  With filter_xss() the system is only filtering "&", "<" and ">", leaving holes for other types of javascript code that can be sent through a parameter. For example letting it pass quotes (") allows events like onClick, among others, to be executed successfully:
 
+
 http://example.com/?q=" onmouseover=prompt("Sujeet")""
+
 
 For the time being I've hacked the core module filter.module with the same code used to filter "&", but I would like to know if this is the correct approach, and if so, to see this being put in a patch.
 
